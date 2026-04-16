@@ -1,0 +1,1025 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ComXo — Digital Performance Report · Nov 2025 – Apr 2026</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+
+  <style>
+    :root {
+      --navy:       #1C2648;
+      --navy-mid:   #283568;
+      --navy-light: #3D5091;
+      --teal:       #00C4B0;
+      --teal-dark:  #009E8D;
+      --teal-bg:    rgba(0,196,176,.1);
+      --silver:     #8B96B5;
+      --silver-lt:  #C5CCDE;
+      --off-white:  #F4F5FA;
+      --white:      #FFFFFF;
+      --text:       #1C2648;
+      --text-sec:   #4E5D80;
+      --text-muted: #8B96B5;
+      --border:     #DDE1EF;
+      --green:      #186E57;
+      --green-bg:   #E5F5F0;
+      --amber:      #C47C0A;
+      --amber-bg:   #FEF3E2;
+      --shadow-sm:  0 1px 4px rgba(28,38,72,.07), 0 1px 2px rgba(28,38,72,.04);
+      --shadow-md:  0 4px 18px rgba(28,38,72,.1),  0 2px 6px rgba(28,38,72,.06);
+      --r:          12px;
+      --r-sm:       8px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { font-size: 16px; scroll-behavior: smooth; }
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--off-white);
+      color: var(--text);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── LAYOUT ── */
+    .wrap { max-width: 1080px; margin: 0 auto; padding: 0 36px; }
+
+    /* ── HERO ── */
+    .hero {
+      background: var(--navy);
+      background-image:
+        radial-gradient(ellipse 55% 80% at 5% 50%,  rgba(61,80,145,.45) 0%, transparent 70%),
+        radial-gradient(ellipse 40% 60% at 92% 10%, rgba(0,196,176,.15) 0%, transparent 60%);
+      color: #fff;
+      padding: 52px 0 0;
+      position: relative;
+      overflow: hidden;
+    }
+    .hero::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg width='64' height='64' viewBox='0 0 64 64' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.016'%3E%3Cpath d='M0 0h4v4H0zM16 0h4v4h-4zM32 0h4v4h-4zM48 0h4v4h-4zM8 8h4v4H8zM24 8h4v4h-4zM40 8h4v4h-4zM56 8h4v4h-4z'/%3E%3C/g%3E%3C/svg%3E");
+      pointer-events: none;
+    }
+
+    /* Decorative switchboard image — hero right side */
+    .hero-img {
+      position: absolute;
+      right: 0; bottom: 0;
+      height: 100%;
+      max-height: 260px;
+      width: auto;
+      object-fit: cover;
+      object-position: top center;
+      opacity: .22;
+      mask-image: linear-gradient(to left, rgba(0,0,0,.6) 0%, transparent 100%);
+      -webkit-mask-image: linear-gradient(to left, rgba(0,0,0,.6) 0%, transparent 100%);
+      pointer-events: none;
+    }
+
+    .hero-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 40px;
+      flex-wrap: wrap;
+      margin-bottom: 44px;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* Logo */
+    .logo { display: flex; align-items: center; gap: 0; margin-bottom: 28px; }
+    .logo img { height: 36px; width: auto; }
+
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      font-size: 10.5px;
+      font-weight: 600;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      padding: 5px 13px;
+      border-radius: 100px;
+      border: 1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.09);
+      color: rgba(255,255,255,.8);
+      margin-bottom: 14px;
+    }
+    .tag-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--teal); }
+
+    .hero h1 {
+      font-family: 'Syne', sans-serif;
+      font-size: clamp(26px, 3.2vw, 40px);
+      font-weight: 800;
+      line-height: 1.13;
+      letter-spacing: -.025em;
+      margin-bottom: 10px;
+    }
+    .hero-sub { color: rgba(255,255,255,.55); font-size: 15px; }
+
+    .hero-right {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 8px;
+      text-align: right;
+      position: relative;
+      z-index: 1;
+    }
+    .hero-right-label {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.38);
+    }
+    .period-badge {
+      font-family: 'Syne', sans-serif;
+      font-size: 13px;
+      font-weight: 600;
+      color: rgba(255,255,255,.82);
+      background: rgba(255,255,255,.08);
+      border: 1px solid rgba(255,255,255,.14);
+      padding: 6px 14px;
+      border-radius: 7px;
+    }
+    .period-badge.dim { background: rgba(255,255,255,.04); color: rgba(255,255,255,.42); }
+    .by-line { font-size: 11.5px; color: rgba(255,255,255,.35); margin-top: 2px; }
+    .by-line strong { color: rgba(255,255,255,.6); }
+
+    /* ── METRICS STRIP ── */
+    .metrics-strip {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      border-top: 1px solid rgba(255,255,255,.08);
+      position: relative;
+      z-index: 1;
+    }
+    .m-cell {
+      padding: 22px 26px;
+      border-right: 1px solid rgba(255,255,255,.08);
+    }
+    .m-cell:last-child { border-right: none; }
+    .m-label {
+      font-size: 10.5px;
+      font-weight: 600;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.4);
+      margin-bottom: 7px;
+    }
+    .m-val {
+      font-family: 'Syne', sans-serif;
+      font-size: 27px;
+      font-weight: 800;
+      color: #fff;
+      line-height: 1;
+      margin-bottom: 7px;
+    }
+    .m-delta {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 11.5px;
+      font-weight: 600;
+      padding: 3px 8px;
+      border-radius: 100px;
+    }
+    .d-up   { background: rgba(0,196,176,.18); color: var(--teal); }
+    .d-flat { background: rgba(255,255,255,.08); color: rgba(255,255,255,.45); }
+
+    /* ── MAIN ── */
+    .main { padding: 48px 0 68px; }
+    section { margin-bottom: 44px; }
+
+    .sec-head {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      margin-bottom: 20px;
+      gap: 12px;
+    }
+    .sec-title {
+      font-family: 'Syne', sans-serif;
+      font-size: 19px;
+      font-weight: 700;
+      letter-spacing: -.01em;
+      color: var(--text);
+    }
+    .sec-sub { font-size: 12.5px; color: var(--text-muted); }
+
+    /* ── CARD ── */
+    .card {
+      background: var(--white);
+      border-radius: var(--r);
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow-sm);
+      padding: 26px 28px;
+    }
+    .card-title {
+      font-family: 'Syne', sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 20px;
+      padding-bottom: 14px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    /* ── GRIDS ── */
+    .g2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    .g4 { display: grid; grid-template-columns: repeat(4,1fr); gap: 16px; }
+
+    /* ── CHART ── */
+    .chart-wrap { position: relative; height: 260px; }
+    .chart-wrap.tall { height: 320px; }
+
+    /* ── STAT BLOCK ── */
+    .stat {
+      background: var(--white);
+      border-radius: var(--r);
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow-sm);
+      padding: 22px 22px 20px;
+    }
+    .stat-lbl {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 9px;
+    }
+    .stat-num {
+      font-family: 'Syne', sans-serif;
+      font-size: 32px;
+      font-weight: 800;
+      color: var(--text);
+      line-height: 1;
+      margin-bottom: 9px;
+    }
+    .stat-row { display: flex; align-items: center; gap: 7px; }
+    .delta {
+      display: inline-flex;
+      align-items: center;
+      gap: 3px;
+      font-size: 12px;
+      font-weight: 600;
+      padding: 3px 9px;
+      border-radius: 100px;
+    }
+    .delta.up   { background: var(--green-bg); color: var(--green); }
+    .delta.teal { background: var(--teal-bg);  color: var(--teal-dark); }
+    .delta.flat { background: var(--off-white); color: var(--text-muted); }
+    .stat-vs { font-size: 11.5px; color: var(--text-muted); }
+
+    /* ── DATA TABLE ── */
+    .dt { width: 100%; border-collapse: collapse; }
+    .dt th {
+      text-align: left;
+      font-size: 10.5px;
+      font-weight: 600;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      padding: 9px 14px;
+      border-bottom: 2px solid var(--border);
+    }
+    .dt th:not(:first-child) { text-align: right; }
+    .dt td {
+      padding: 11px 14px;
+      font-size: 13.5px;
+      border-bottom: 1px solid var(--border);
+      color: var(--text);
+    }
+    .dt td:not(:first-child) { text-align: right; font-variant-numeric: tabular-nums; }
+    .dt tr:last-child td { border-bottom: none; }
+    .dt tr:hover td { background: var(--off-white); }
+    .up-c   { color: var(--green); font-weight: 600; }
+
+    /* ── PROGRESS BARS ── */
+    .pb-item { margin-bottom: 14px; }
+    .pb-item:last-child { margin-bottom: 0; }
+    .pb-row { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 5px; }
+    .pb-lbl { font-size: 13.5px; font-weight: 500; }
+    .pb-val { font-size: 13.5px; font-weight: 600; color: var(--text-sec); }
+    .pb-bg { height: 5px; background: var(--border); border-radius: 100px; overflow: hidden; }
+    .pb-fill       { height: 100%; border-radius: 100px; background: var(--navy); }
+    .pb-fill.teal  { background: var(--teal); }
+    .pb-fill.muted { background: var(--silver-lt); }
+
+    /* ── SPOTLIGHT (calculator) ── */
+    .spotlight {
+      border-radius: 18px;
+      overflow: hidden;
+      display: grid;
+      grid-template-columns: 1fr 240px;
+      background: linear-gradient(130deg, var(--navy) 0%, var(--navy-mid) 100%);
+      color: #fff;
+      position: relative;
+    }
+    .spot-content {
+      padding: 36px 40px;
+      position: relative;
+      z-index: 1;
+    }
+    .spot-img-col {
+      position: relative;
+      overflow: hidden;
+    }
+    .spot-img-col img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center top;
+      opacity: .55;
+      mask-image: linear-gradient(to right, transparent 0%, rgba(0,0,0,.8) 40%);
+      -webkit-mask-image: linear-gradient(to right, transparent 0%, rgba(0,0,0,.8) 40%);
+    }
+    /* Teal triangle accent on spotlight image */
+    .spot-img-col::after {
+      content: '';
+      position: absolute;
+      bottom: 20px; right: 16px;
+      width: 50px; height: 50px;
+      background: var(--teal);
+      clip-path: polygon(0 100%, 100% 50%, 0 0);
+      opacity: .6;
+    }
+
+    .spot-eye {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.45);
+      margin-bottom: 8px;
+    }
+    .spot-eye::before { content: ''; width: 20px; height: 1.5px; background: rgba(255,255,255,.25); }
+    .spotlight h2 {
+      font-family: 'Syne', sans-serif;
+      font-size: 21px;
+      font-weight: 800;
+      margin-bottom: 6px;
+    }
+    .spot-desc { font-size: 14px; color: rgba(255,255,255,.56); margin-bottom: 28px; max-width: 440px; line-height: 1.55; }
+    .spot-stats { display: grid; grid-template-columns: repeat(3,1fr); gap: 14px; }
+    .spot-stat {
+      background: rgba(255,255,255,.08);
+      border: 1px solid rgba(255,255,255,.11);
+      border-radius: var(--r-sm);
+      padding: 14px 16px;
+    }
+    .spot-stat-lbl { font-size: 10px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; color: rgba(255,255,255,.4); margin-bottom: 6px; }
+    .spot-stat-val { font-family: 'Syne', sans-serif; font-size: 22px; font-weight: 800; color: #fff; line-height: 1; margin-bottom: 4px; }
+    .spot-stat-d   { font-size: 11px; font-weight: 600; color: var(--teal); }
+
+    /* Whitepaper footnote — subtle inline note */
+    .wp-note {
+      margin-top: 10px;
+      font-size: 12px;
+      color: var(--text-muted);
+      display: flex;
+      align-items: flex-start;
+      gap: 6px;
+      padding: 10px 14px;
+      background: var(--white);
+      border-radius: var(--r-sm);
+      border: 1px solid var(--border);
+    }
+    .wp-note-icon { flex-shrink: 0; margin-top: 1px; opacity: .5; }
+
+    /* ── OBSERVATIONS ── */
+    .obs {
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+      padding: 17px 18px;
+      border-radius: var(--r-sm);
+      border: 1px solid;
+    }
+    .obs.g { background: var(--green-bg); border-color: rgba(24,110,87,.18); }
+    .obs.a { background: var(--amber-bg); border-color: rgba(196,124,10,.18); }
+    .obs.n { background: var(--off-white); border-color: var(--border); }
+    .obs.t { background: var(--teal-bg);  border-color: rgba(0,196,176,.2); }
+    .obs-ico {
+      flex-shrink: 0;
+      width: 34px; height: 34px;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 16px;
+    }
+    .obs.g .obs-ico { background: rgba(24,110,87,.12); }
+    .obs.a .obs-ico { background: rgba(196,124,10,.12); }
+    .obs.n .obs-ico { background: rgba(28,38,72,.07); }
+    .obs.t .obs-ico { background: rgba(0,196,176,.12); }
+    .obs-t   { font-size: 13.5px; font-weight: 600; color: var(--text); margin-bottom: 3px; }
+    .obs-txt { font-size: 12.5px; color: var(--text-sec); line-height: 1.52; }
+
+    /* ── FOOTER ── */
+    .foot {
+      background: var(--navy);
+      color: rgba(255,255,255,.35);
+      padding: 24px 0;
+      font-size: 11.5px;
+    }
+    .foot-inner { display: flex; justify-content: space-between; align-items: center; }
+    .foot-brand { font-family: 'Syne', sans-serif; font-size: 12.5px; font-weight: 700; letter-spacing: .1em; color: rgba(255,255,255,.28); }
+
+    /* ── UTILITY ── */
+    .gap12 { display: flex; flex-direction: column; gap: 12px; }
+    .mt16  { margin-top: 16px; }
+
+    /* ── TEAL ACCENT LINE on section titles ── */
+    .sec-title::after {
+      content: '';
+      display: inline-block;
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--teal);
+      margin-left: 8px;
+      vertical-align: middle;
+      opacity: .7;
+    }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(14px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .a0 { animation: fadeUp .5s ease both; }
+    .a1 { animation: fadeUp .5s .1s ease both; }
+    .a2 { animation: fadeUp .5s .2s ease both; }
+    .a3 { animation: fadeUp .5s .3s ease both; }
+    .a4 { animation: fadeUp .5s .4s ease both; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 800px) {
+      .spotlight { grid-template-columns: 1fr; }
+      .spot-img-col { display: none; }
+    }
+    @media (max-width: 720px) {
+      .metrics-strip, .g4 { grid-template-columns: 1fr 1fr; }
+      .g2 { grid-template-columns: 1fr; }
+      .spot-stats { grid-template-columns: 1fr 1fr; }
+      .hero-top { flex-direction: column; }
+      .hero-right { align-items: flex-start; text-align: left; }
+      .wrap { padding: 0 20px; }
+      .hero-img { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ════════════════════════════════════════
+     HERO
+════════════════════════════════════════ -->
+<header class="hero">
+  <!-- Decorative image faded into background -->
+  <img class="hero-img" src="switchboard01.jpg" alt="">
+
+  <div class="wrap">
+    <div class="hero-top">
+
+      <div class="a0">
+        <div class="logo">
+          <img src="logo_comxo.png" alt="ComXo">
+        </div>
+
+        <div class="tag"><span class="tag-dot"></span>Website Performance Report</div>
+        <h1>Digital Performance<br>Since November 2025</h1>
+        <p class="hero-sub">A full-funnel view of traffic, engagement &amp; lead generation</p>
+      </div>
+
+      <div class="hero-right a2">
+        <span class="hero-right-label">Reporting Period</span>
+        <span class="period-badge">Nov 2025 – Apr 2026</span>
+        <span class="period-badge dim">vs Nov 2024 – Apr 2025</span>
+        <p class="by-line">Prepared by <strong>Zephyr</strong> · April 2026</p>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Metrics strip -->
+  <div class="wrap">
+    <div class="metrics-strip">
+      <div class="m-cell a1">
+        <div class="m-label">Total Sessions</div>
+        <div class="m-val">16,051</div>
+        <span class="m-delta d-up">↑ +14% YoY</span>
+      </div>
+      <div class="m-cell a2">
+        <div class="m-label">Total Users</div>
+        <div class="m-val">13,198</div>
+        <span class="m-delta d-up">↑ +16% YoY</span>
+      </div>
+      <div class="m-cell a3">
+        <div class="m-label">Contact Enquiries</div>
+        <div class="m-val">7</div>
+        <span class="m-delta d-up">↑ +600% YoY</span>
+      </div>
+      <div class="m-cell a4">
+        <div class="m-label">Calculator Engagement</div>
+        <div class="m-val">72.8%</div>
+        <span class="m-delta d-up">↑ +24pp YoY</span>
+      </div>
+    </div>
+  </div>
+</header>
+
+
+<!-- ════════════════════════════════════════
+     MAIN
+════════════════════════════════════════ -->
+<main class="main">
+  <div class="wrap">
+
+    <!-- ── TRAFFIC OVERVIEW ── -->
+    <section>
+      <div class="sec-head">
+        <h2 class="sec-title">Traffic Overview</h2>
+        <span class="sec-sub">Monthly sessions — current period vs prior year</span>
+      </div>
+      <div class="card a1">
+        <div class="card-title">Monthly Sessions Comparison</div>
+        <div class="chart-wrap tall">
+          <canvas id="sessionsChart"></canvas>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── ENGAGEMENT QUALITY ── -->
+    <section>
+      <div class="sec-head">
+        <h2 class="sec-title">Engagement Quality</h2>
+        <span class="sec-sub">How meaningfully visitors interact with the site</span>
+      </div>
+      <div class="g2">
+        <div class="card">
+          <div class="card-title">Engagement Rate — Monthly Trend</div>
+          <div class="chart-wrap">
+            <canvas id="engChart"></canvas>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-title">Month-by-Month Detail</div>
+          <table class="dt">
+            <thead>
+              <tr>
+                <th>Month</th>
+                <th>Sessions</th>
+                <th>Eng. Rate</th>
+                <th>Avg Duration</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>Nov 2025</td><td>1,931</td><td>40.3%</td><td>1m 51s</td></tr>
+              <tr><td>Dec 2025</td><td>2,243</td><td>45.8%</td><td>2m 15s</td></tr>
+              <tr><td>Jan 2026</td><td class="up-c">4,044</td><td>49.9%</td><td>2m 18s</td></tr>
+              <tr><td>Feb 2026</td><td>3,422</td><td>49.3%</td><td>1m 51s</td></tr>
+              <tr><td>Mar 2026</td><td class="up-c">3,665</td><td class="up-c">52.4%</td><td>1m 58s</td></tr>
+              <tr><td>Apr 2026 <small style="background:rgba(0,196,176,.1);color:var(--teal-dark);padding:1px 6px;border-radius:4px;font-size:10px;font-weight:600;letter-spacing:.04em">MTD</small></td><td>746</td><td>37.1%</td><td>1m 21s</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── TRAFFIC SOURCES ── -->
+    <section>
+      <div class="sec-head">
+        <h2 class="sec-title">Traffic Sources</h2>
+        <span class="sec-sub">Where visitors are coming from — Nov 2025 to Apr 2026</span>
+      </div>
+      <div class="g2">
+        <div class="card">
+          <div class="card-title">Sessions by Channel</div>
+          <div class="pb-item">
+            <div class="pb-row">
+              <span class="pb-lbl">Direct</span>
+              <span class="pb-val">8,876&ensp;<span style="color:var(--green);font-size:12px;font-weight:600">↑ +24%</span></span>
+            </div>
+            <div class="pb-bg"><div class="pb-fill" style="width:55%"></div></div>
+          </div>
+          <div class="pb-item">
+            <div class="pb-row">
+              <span class="pb-lbl">Referral</span>
+              <span class="pb-val">4,612&ensp;<span style="color:var(--green);font-size:12px;font-weight:600">↑ +10%</span></span>
+            </div>
+            <div class="pb-bg"><div class="pb-fill teal" style="width:29%"></div></div>
+          </div>
+          <div class="pb-item">
+            <div class="pb-row">
+              <span class="pb-lbl">Organic Search</span>
+              <span class="pb-val">2,122&ensp;<span style="color:var(--text-muted);font-size:12px;font-weight:600">→ +3%</span></span>
+            </div>
+            <div class="pb-bg"><div class="pb-fill muted" style="width:13%"></div></div>
+          </div>
+          <div class="pb-item">
+            <div class="pb-row">
+              <span class="pb-lbl">Organic Social</span>
+              <span class="pb-val">213&ensp;<span style="color:#B83232;font-size:12px;font-weight:600">↓ −49%</span></span>
+            </div>
+            <div class="pb-bg"><div class="pb-fill muted" style="width:1.3%"></div></div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-title">Channel Highlights</div>
+          <div class="gap12">
+            <div class="obs g">
+              <div class="obs-ico">📈</div>
+              <div>
+                <div class="obs-t">Direct traffic up 24%</div>
+                <div class="obs-txt">Strong growth suggests improved brand awareness — people actively seeking ComXo rather than discovering it for the first time.</div>
+              </div>
+            </div>
+            <div class="obs t">
+              <div class="obs-ico">🔗</div>
+              <div>
+                <div class="obs-t">Referral visitors: 69% engagement rate</div>
+                <div class="obs-txt">The most engaged channel on the site — high-intent arrivals from partner, directory, or press links.</div>
+              </div>
+            </div>
+            <div class="obs a">
+              <div class="obs-ico">📉</div>
+              <div>
+                <div class="obs-t">Organic social down 49%</div>
+                <div class="obs-txt">Social referrals have halved year-on-year. If LinkedIn output has reduced, this is almost certainly the cause.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── CALCULATOR SPOTLIGHT ── -->
+    <section>
+      <div class="sec-head">
+        <h2 class="sec-title">Switchboard Calculator</h2>
+        <span class="sec-sub">comxo.com/switchboard-calculator/</span>
+      </div>
+
+      <div class="spotlight a1">
+        <div class="spot-content">
+          <div class="spot-eye">Feature Spotlight</div>
+          <h2>Calculator Performance Has Transformed</h2>
+          <p class="spot-desc">Since the update — including the addition of the whitepaper — visitors are spending 50% longer on the page and engaging at a rate that's nearly doubled compared to the same period last year.</p>
+          <div class="spot-stats">
+            <div class="spot-stat">
+              <div class="spot-stat-lbl">Engagement Rate</div>
+              <div class="spot-stat-val">72.8%</div>
+              <div class="spot-stat-d">↑ +24pp · was 49.1%</div>
+            </div>
+            <div class="spot-stat">
+              <div class="spot-stat-lbl">Avg. Session Duration</div>
+              <div class="spot-stat-val">1m 30s</div>
+              <div class="spot-stat-d">↑ +50% · was 60s</div>
+            </div>
+            <div class="spot-stat">
+              <div class="spot-stat-lbl">Form Interactions</div>
+              <div class="spot-stat-val">21</div>
+              <div class="spot-stat-d">↑ +24% · was 17</div>
+            </div>
+          </div>
+        </div>
+        <div class="spot-img-col">
+          <img src="switchboard.png" alt="">
+        </div>
+      </div>
+
+      <!-- Subtle whitepaper note -->
+      <p class="wp-note">
+        <svg class="wp-note-icon" width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="7" r="6.5" stroke="currentColor" stroke-opacity=".5"/><path d="M7 6v4M7 4.5v.5" stroke="currentColor" stroke-linecap="round"/></svg>
+        The whitepaper download isn't currently appearing as a tracked event in GA4 — worth a quick check on the setup so future downloads are captured in the data.
+      </p>
+    </section>
+
+    <!-- ── CONTACT & LEADS ── -->
+    <section>
+      <div class="sec-head">
+        <h2 class="sec-title">Contact &amp; Lead Generation</h2>
+        <span class="sec-sub">Business enquiry forms — excluding job applications</span>
+      </div>
+
+      <div class="g4">
+        <div class="stat">
+          <div class="stat-lbl">Contact Form Starts</div>
+          <div class="stat-num">18</div>
+          <div class="stat-row">
+            <span class="delta up">↑ +125%</span>
+            <span class="stat-vs">vs 8</span>
+          </div>
+        </div>
+        <div class="stat">
+          <div class="stat-lbl">Contact Form Submits</div>
+          <div class="stat-num">7</div>
+          <div class="stat-row">
+            <span class="delta up">↑ +600%</span>
+            <span class="stat-vs">vs 1</span>
+          </div>
+        </div>
+        <div class="stat">
+          <div class="stat-lbl">Calculator Form Starts</div>
+          <div class="stat-num">21</div>
+          <div class="stat-row">
+            <span class="delta teal">↑ +24%</span>
+            <span class="stat-vs">vs 17</span>
+          </div>
+        </div>
+        <div class="stat">
+          <div class="stat-lbl">Impact Calc. Interactions</div>
+          <div class="stat-num">9</div>
+          <div class="stat-row">
+            <span class="delta teal">New</span>
+            <span class="stat-vs">vs 0</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="mt16">
+        <div class="obs g">
+          <div class="obs-ico">🎯</div>
+          <div>
+            <div class="obs-t">Contact enquiries up 7× year-on-year</div>
+            <div class="obs-txt">Going from 1 to 7 contact form completions in a comparable period is the most significant commercial signal in the data. The start-to-submit conversion rate is broadly stable, so it's increased volume driving the gain.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── ORGANIC SEARCH ── -->
+    <section>
+      <div class="sec-head">
+        <h2 class="sec-title">Organic Search Authority</h2>
+        <span class="sec-sub">Ahrefs estimated traffic &amp; domain strength — Nov 2024 to Apr 2026</span>
+      </div>
+
+      <div class="g2">
+        <div class="card">
+          <div class="card-title">Estimated Organic Visits (Ahrefs)</div>
+          <div class="chart-wrap">
+            <canvas id="orgChart"></canvas>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-title">Domain Rating History</div>
+          <div class="chart-wrap">
+            <canvas id="drChart"></canvas>
+          </div>
+        </div>
+      </div>
+
+      <div class="mt16 gap12">
+        <div class="obs g">
+          <div class="obs-ico">📊</div>
+          <div>
+            <div class="obs-t">Organic recovering strongly from the Nov 2025 trough</div>
+            <div class="obs-txt">Estimated organic visits bottomed at ~101 in November 2025. April 2026 is already tracking at 159 — a 57% recovery, returning to 2025 mid-year levels.</div>
+          </div>
+        </div>
+        <div class="obs a">
+          <div class="obs-ico">🔍</div>
+          <div>
+            <div class="obs-t">Domain Rating has softened slightly (23 → 20)</div>
+            <div class="obs-txt">DR has dipped a little since November, suggesting some backlinks have weakened. A focused link-building effort — using the whitepaper and calculator as linkable assets — would rebuild authority and accelerate organic recovery.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ── OTHER FINDINGS ── -->
+    <section>
+      <div class="sec-head">
+        <h2 class="sec-title">Other Notable Findings</h2>
+      </div>
+      <div class="gap12">
+        <div class="obs n">
+          <div class="obs-ico">📖</div>
+          <div>
+            <div class="obs-t">About page — deep purchase-consideration signal</div>
+            <div class="obs-txt">581 sessions averaging <strong>4 minutes 4 seconds</strong> on the About page — well above site average and consistent with visitors researching the company before making contact.</div>
+          </div>
+        </div>
+        <div class="obs n">
+          <div class="obs-ico">💼</div>
+          <div>
+            <div class="obs-t">Vacancies traffic dominates overall numbers</div>
+            <div class="obs-txt">The top 4 pages by traffic are all job listings, accounting for 10,000+ sessions. The commercial metrics — contact forms, calculator, service pages — are the meaningful signal for business performance.</div>
+          </div>
+        </div>
+        <div class="obs a">
+          <div class="obs-ico">⚡</div>
+          <div>
+            <div class="obs-t">Vialto app page — possible technical issue</div>
+            <div class="obs-txt">386 sessions but only 7% engagement rate — anomalously low. Could indicate bot traffic, a broken redirect, or a page that exits immediately. Worth investigating directly.</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </div><!-- /wrap -->
+</main>
+
+
+<!-- ════════════════════════════════════════
+     FOOTER
+════════════════════════════════════════ -->
+<footer class="foot">
+  <div class="wrap">
+    <div class="foot-inner">
+      <span>Data: Google Analytics 4 (property 372987560) &amp; Ahrefs Site Explorer</span>
+      <span class="foot-brand">ZEPHYR</span>
+      <span>April 2026</span>
+    </div>
+  </div>
+</footer>
+
+
+<!-- ════════════════════════════════════════
+     CHARTS
+════════════════════════════════════════ -->
+<script>
+  const NAVY   = '#1C2648';
+  const NAVY2  = '#3D5091';
+  const TEAL   = '#00C4B0';
+  const SILVER = '#C5CCDE';
+  const GREEN  = '#186E57';
+  const MUTED  = '#8B96B5';
+  const BORDER = '#DDE1EF';
+  const FONT   = 'DM Sans';
+
+  const tip = {
+    backgroundColor: NAVY,
+    titleFont: { family: 'Syne', size: 12 },
+    bodyFont:  { family: FONT,   size: 12 },
+    padding: 12,
+    cornerRadius: 8,
+  };
+  const ax = {
+    grid:   { color: BORDER },
+    border: { display: false },
+    ticks:  { font: { family: FONT, size: 11 }, color: MUTED },
+  };
+
+  // ── Sessions ──
+  new Chart(document.getElementById('sessionsChart'), {
+    type: 'bar',
+    data: {
+      labels: ['Nov', 'Dec', 'Jan', 'Feb', 'Mar', 'Apr (MTD)'],
+      datasets: [
+        {
+          label: '2025/26 (Since Work)',
+          data: [1931, 2243, 4044, 3422, 3665, 746],
+          backgroundColor: NAVY,
+          borderRadius: 6, borderSkipped: false,
+        },
+        {
+          label: '2024/25 (Prior Year)',
+          data: [4097, 1990, 2300, 2369, 2331, 992],
+          backgroundColor: SILVER,
+          borderRadius: 6, borderSkipped: false,
+        }
+      ]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      plugins: {
+        legend: {
+          position: 'top',
+          labels: { font: { family: FONT, size: 12 }, color: MUTED, padding: 18, boxWidth: 12, boxHeight: 12, usePointStyle: true, pointStyle: 'rectRounded' }
+        },
+        tooltip: { ...tip, callbacks: { label: c => ` ${c.dataset.label}: ${c.parsed.y.toLocaleString()}` } }
+      },
+      scales: {
+        x: { ...ax, grid: { display: false } },
+        y: { ...ax, ticks: { ...ax.ticks, callback: v => v.toLocaleString() } }
+      }
+    }
+  });
+
+  // ── Engagement Rate ──
+  new Chart(document.getElementById('engChart'), {
+    type: 'line',
+    data: {
+      labels: ['Nov', 'Dec', 'Jan', 'Feb', 'Mar'],
+      datasets: [
+        {
+          label: '2025/26',
+          data: [40.3, 45.8, 49.9, 49.3, 52.4],
+          borderColor: NAVY, backgroundColor: 'rgba(28,38,72,0.07)',
+          fill: true, tension: 0.42,
+          pointBackgroundColor: NAVY, pointRadius: 5, borderWidth: 2.5,
+        },
+        {
+          label: '2024/25',
+          data: [53.0, 45.7, 54.9, 54.7, 51.2],
+          borderColor: SILVER, backgroundColor: 'transparent',
+          fill: false, tension: 0.42,
+          pointBackgroundColor: SILVER, pointRadius: 4,
+          borderWidth: 2, borderDash: [5, 4],
+        }
+      ]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      plugins: {
+        legend: { position: 'top', labels: { font: { family: FONT, size: 12 }, color: MUTED, padding: 18, usePointStyle: true } },
+        tooltip: { ...tip, callbacks: { label: c => ` ${c.dataset.label}: ${c.parsed.y.toFixed(1)}%` } }
+      },
+      scales: {
+        x: { ...ax, grid: { display: false } },
+        y: { ...ax, min: 30, max: 65, ticks: { ...ax.ticks, callback: v => v + '%' } }
+      }
+    }
+  });
+
+  // ── Organic Traffic ──
+  const labels18 = ['Nov 24','Dec 24','Jan 25','Feb 25','Mar 25','Apr 25','May 25','Jun 25','Jul 25','Aug 25','Sep 25','Oct 25','Nov 25','Dec 25','Jan 26','Feb 26','Mar 26','Apr 26'];
+  const orgData  = [201,146,164,158,159,148,152,151,138,129,114,109,101,112,134,129,112,159];
+
+  new Chart(document.getElementById('orgChart'), {
+    type: 'line',
+    data: {
+      labels: labels18,
+      datasets: [{
+        label: 'Est. Organic Visits',
+        data: orgData,
+        borderColor: NAVY2,
+        backgroundColor: ctx => {
+          const g = ctx.chart.ctx.createLinearGradient(0,0,0,240);
+          g.addColorStop(0, 'rgba(61,80,145,0.14)');
+          g.addColorStop(1, 'rgba(61,80,145,0)');
+          return g;
+        },
+        fill: true, tension: 0.42,
+        pointBackgroundColor: ctx => {
+          if (ctx.dataIndex === 12) return '#B83232';
+          if (ctx.dataIndex === 17) return TEAL;
+          return NAVY2;
+        },
+        pointRadius: ctx => [12,17].includes(ctx.dataIndex) ? 6 : 3,
+        borderWidth: 2.5,
+      }]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      plugins: {
+        legend: { display: false },
+        tooltip: { ...tip }
+      },
+      scales: {
+        x: { ...ax, grid: { display: false }, ticks: { ...ax.ticks, maxRotation: 40, font: { family: FONT, size: 10 } } },
+        y: { ...ax, min: 80 }
+      }
+    }
+  });
+
+  // ── Domain Rating ──
+  new Chart(document.getElementById('drChart'), {
+    type: 'line',
+    data: {
+      labels: labels18,
+      datasets: [{
+        label: 'Domain Rating',
+        data: [21,21,23,25,25,24,25,24,24,24,25,23,23,24,23,21,20,20],
+        borderColor: MUTED,
+        backgroundColor: ctx => {
+          const g = ctx.chart.ctx.createLinearGradient(0,0,0,240);
+          g.addColorStop(0, 'rgba(139,150,181,0.12)');
+          g.addColorStop(1, 'rgba(139,150,181,0)');
+          return g;
+        },
+        fill: true, tension: 0.4,
+        pointBackgroundColor: MUTED, pointRadius: 3, borderWidth: 2.5,
+      }]
+    },
+    options: {
+      responsive: true, maintainAspectRatio: false,
+      plugins: {
+        legend: { display: false },
+        tooltip: { ...tip }
+      },
+      scales: {
+        x: { ...ax, grid: { display: false }, ticks: { ...ax.ticks, maxRotation: 40, font: { family: FONT, size: 10 } } },
+        y: { ...ax, min: 15, max: 30, ticks: { ...ax.ticks, stepSize: 5 } }
+      }
+    }
+  });
+</script>
+</body>
+</html>
